@@ -4,6 +4,8 @@ package bo.edu.ucb.ingsoft.demorest.dao;
 import bo.edu.ucb.ingsoft.demorest.dto.Veterinaria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -12,8 +14,12 @@ import java.sql.Statement;
 @Service
 public class VeterinariaDao {
         @Autowired
-        public DataSource dataSource;
+        private DataSource dataSource;
+
+        @Autowired
+        private SecuenciaDao secuenciaDao;
      public Veterinaria crearVeterinaria (Veterinaria veterinaria){
+          veterinaria.idVeterinaria =secuenciaDao.getPrimaryKeyForTable("veterinaria");
          try{
              Connection conn =dataSource.getConnection();
              Statement stat = conn.createStatement();
@@ -26,4 +32,6 @@ public class VeterinariaDao {
          return veterinaria;
 
      }
+
+
 }
