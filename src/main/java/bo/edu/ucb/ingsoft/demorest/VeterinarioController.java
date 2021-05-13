@@ -19,14 +19,14 @@ public class VeterinarioController {
         @Autowired
         public DataSource dataSource;
 
-        @GetMapping(path = "/veterinario/{id_veterinario}")
+        @GetMapping(path = "/veterinario/{idVeterinario}")
 
         public Veterinario findVeterinarioById(@PathVariable Integer idVeterinario){
             Veterinario result = new Veterinario();
             try{
                 Connection conn= dataSource.getConnection();
                 Statement stat = conn.createStatement();
-                ResultSet rs= stat.executeQuery("SELECT id_veterinario,id_usuario,id_veterinaria,id_imagen,nombre,apellido,email,departamento,lugar_formacion FROM veterinario WHERE id_veterinario="+idVeterinario);
+                ResultSet rs= stat.executeQuery("SELECT id_veterinario,id_usuario,id_veterinaria,id_imagen,nombre,apellido,email,departamento,lugar_formacion FROM veterinario WHERE id_veterinario= 1");
                 if(rs.next()){
                     result.idVeterinario=rs.getInt("id_veterinario");
                     result.idUsuario=rs.getInt("id_usuario");
