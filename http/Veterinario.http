@@ -5,13 +5,13 @@ GET http://localhost:8080/veterinario/1
 POST http://localhost:8080/veterinaria
 Content-Type:  application/json
 Accept: application/json
-{
-  "idTipo":1;
-  "nombre":"Dog Happy"
-  "ciudad":"La Paz"
-  "direccion":"Villa San Antonio"
-  "telefono":"4526782"
-  "email": "dog_@gmail.com"
-  "horaAtencion":"Lunes a Viernes 9:00 - 20:00"
 
+{
+  "idTipo": 2,
+  "nombre": "cat Happy",
+  "ciudad":"La Paz",
+  "direccion":"Villa San Antonio",
+  "telefono":"4526782",
+  "email": "cat@gmail.com",
+  "horaAtencion":"Lunes a Viernes 9:00 - 20:00"
 }

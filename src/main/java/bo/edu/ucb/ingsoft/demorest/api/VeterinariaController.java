@@ -19,11 +19,14 @@ public class VeterinariaController {
     public DataSource dataSource;
     @Autowired
     private GestionVeterinaria gestionVeterinaria;
-
+    private Object Integer;
 
 
     @PostMapping(path = "/veterinaria")
     public Veterinaria crearVeterinaria(@RequestBody Veterinaria veterinaria) {
+        if (veterinaria.idTipo == null || veterinaria.idTipo.equals(Integer)) {
+
+        }
 
         if (veterinaria.nombre == null || veterinaria.nombre.equals("")) {
 
