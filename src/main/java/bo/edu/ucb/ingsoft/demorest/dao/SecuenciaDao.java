@@ -17,9 +17,10 @@ public class SecuenciaDao {
     public int getPrimaryKeyForTable (String nombreTabla){
         String nombreSecuencia = nombreTabla.toLowerCase()+"_"+nombreTabla.toLowerCase()+"_"+"id_seq";
         int resultado = 0;
-        try{
-            Connection conn =dataSource.getConnection();
-            Statement stat = conn.createStatement();
+        try(Connection conn =dataSource.getConnection();
+            Statement stat = conn.createStatement();)
+        {
+
             ResultSet rs = stat.executeQuery("SELECT nextval('"+nombreSecuencia +"')");
             if(rs.next()){
                resultado = rs.getInt(1);

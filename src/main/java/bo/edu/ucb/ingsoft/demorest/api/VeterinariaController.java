@@ -2,6 +2,7 @@ package bo.edu.ucb.ingsoft.demorest.api;
 
 import bo.edu.ucb.ingsoft.demorest.bl.GestionVeterinaria;
 import bo.edu.ucb.ingsoft.demorest.dao.VeterinariaDao;
+import bo.edu.ucb.ingsoft.demorest.dto.ResponseDto;
 import bo.edu.ucb.ingsoft.demorest.dto.Veterinaria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,33 +25,36 @@ public class VeterinariaController {
 
 
     @PostMapping(path = "/establecimiento")
-    public Veterinaria crearVeterinaria(@RequestBody Veterinaria veterinaria) {
+    public ResponseDto crearVeterinaria(@RequestBody Veterinaria veterinaria) {
 
-        if (veterinaria.nombre == null || veterinaria.nombre.equals("")) {
-
-        }
-        if (veterinaria.ciudad == null || veterinaria.ciudad.equals("")) {
+        if (veterinaria.getNombre() == null || veterinaria.getNombre().equals("")) {
+            return new ResponseDto(false,null,"El nombre debe ser obligatorio");
 
         }
-        if (veterinaria.direccion == null || veterinaria.direccion.equals("")) {
-
+        if (veterinaria.getCiudad() == null || veterinaria.getCiudad().equals("")) {
+            return new ResponseDto(false,null,"El apellido debe ser obligatorio");
         }
-        if (veterinaria.telefono == null || veterinaria.telefono.equals("")) {
-
+        if (veterinaria.getDireccion() == null || veterinaria.getDireccion().equals("")) {
+            return new ResponseDto(false,null,"La direccion debe ser obligatorio");
         }
-        if (veterinaria.email == null || veterinaria.email.equals("")) {
-
+        if (veterinaria.getTelefono()== null || veterinaria.getTelefono().equals("")) {
+            return new ResponseDto(false,null,"El telefono debe ser obligatorio");
         }
-        if (veterinaria.horaAtencion == null || veterinaria.horaAtencion.equals("")) {
-
+        if (veterinaria.getEmail()== null || veterinaria.getEmail().equals("")) {
+            return new ResponseDto(false,null,"Email debe ser obligatorio");
+        }
+        if (veterinaria.getHoraAtencion() == null || veterinaria.getHoraAtencion().equals("")) {
+            return new ResponseDto(false,null,"El horario de atencion debe ser obligatorio");
         }
 
-        return gestionVeterinaria.crearVeterinaria(veterinaria);
+        return new ResponseDto(true,gestionVeterinaria.crearVeterinaria(veterinaria),null);
     }
 
     @GetMapping(path = "/establecimiento")
-    public List<Veterinaria> findAllVeterinaria(){
-        return gestionVeterinaria.findAllVeterinaria();
+    public ResponseDto findAllVeterinaria(){
+        return new ResponseDto(true,gestionVeterinaria.findAllVeterinaria(),null);
+
+
     }
 
     }

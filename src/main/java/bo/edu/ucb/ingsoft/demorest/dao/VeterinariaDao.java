@@ -23,11 +23,11 @@ public class VeterinariaDao {
         @Autowired
         private SecuenciaDao secuenciaDao;
      public Veterinaria crearVeterinaria (Veterinaria veterinaria){
-          veterinaria.idEstablecimiento =secuenciaDao.getPrimaryKeyForTable("establecimiento");
+          veterinaria.setIdEstablecimiento(secuenciaDao.getPrimaryKeyForTable("establecimiento"));
          try{
              Connection conn =dataSource.getConnection();
              Statement stat = conn.createStatement();
-             stat.execute("INSERT INTO establecimiento VALUES ("+veterinaria.idEstablecimiento+",'"+veterinaria.nombre+"','"+veterinaria.ciudad+"','"+veterinaria.direccion+"','"+veterinaria.telefono+"','"+veterinaria.email+"','"+veterinaria.horaAtencion+"')");
+             stat.execute("INSERT INTO establecimiento VALUES ("+veterinaria.getIdEstablecimiento()+",'"+veterinaria.getNombre()+"','"+veterinaria.getCiudad()+"','"+veterinaria.getDireccion()+"','"+veterinaria.getTelefono()+"','"+veterinaria.getEmail()+"','"+veterinaria.getHoraAtencion()+"')");
          }catch (Exception ex)
          {
              ex.printStackTrace();
@@ -43,16 +43,16 @@ public class VeterinariaDao {
          try{
              Connection conn = dataSource.getConnection();
              Statement stat = conn.createStatement();
-             ResultSet rs = stat.executeQuery("SELECT id_establecimiento,nombre,ciudad,direccion,telefono,email,horario_atencion FROM establecimiento");
+             ResultSet rs = stat.executeQuery("SELECT establecimiento_id,nombre,ciudad,direccion,telefono,email,horario_atencion FROM establecimiento");
              while(rs.next()){
                  Veterinaria veterinaria = new Veterinaria();
-                 veterinaria.idEstablecimiento = rs.getInt("id_establecimiento");
-                 veterinaria.nombre = rs.getString("nombre");
-                 veterinaria.ciudad = rs.getString("ciudad");
-                 veterinaria.direccion = rs.getString("direccion");
-                 veterinaria.telefono = rs.getString("telefono");
-                 veterinaria.email = rs.getString("email");
-                 veterinaria.horaAtencion = rs.getString("Horario_Atencion");
+                 veterinaria.setIdEstablecimiento(rs.getInt("establecimiento_id"));
+                 veterinaria.setNombre(rs.getString("nombre"));
+                 veterinaria.setCiudad(rs.getString("ciudad"));
+                 veterinaria.setDireccion(rs.getString("direccion"));
+                 veterinaria.setTelefono(rs.getString("telefono"));
+                 veterinaria.setEmail(rs.getString("email"));
+                 veterinaria.setHoraAtencion(rs.getString("Horario_Atencion"));
                  result.add(veterinaria);
 
              }

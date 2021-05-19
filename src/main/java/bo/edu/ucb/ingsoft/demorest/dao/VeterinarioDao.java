@@ -25,15 +25,17 @@ public class VeterinarioDao {
             ResultSet rs = stat.executeQuery("SELECT id_veterinario,id_usuario,id_veterinaria,id_imagen,nombre,apellido,email,departamento,lugar_formacion from veterinario WHERE id_veterinario ="+idVeterinario);
             if(rs.next())
             {
-                result.idVeterinario = rs.getInt("id_veterinario");
-                result.idUsuario = rs.getInt("id_usuario");
-                result.idVeterinaria = rs.getInt("id_veterinaria");
-                result.idImagen = rs.getInt("id_imagen");
-                result.nombre = rs.getString("nombre");
-                result.apellido = rs.getString("apellido");
-                result.email = rs.getString("email");
-                result.departamento = rs.getString("departamento");
-                result.lugar_formacion = rs.getString("lugar_formacion");
+                result.setIdVeterinario(rs.getInt("id_veterinario"));
+                result.setIdUsuario(rs.getInt("id_usuario"));
+                result.setIdVeterinaria(rs.getInt("id_veterinaria"));
+                result.setIdImagen(rs.getInt("id_imagen"));
+                result.setNombre(rs.getString("nombre"));
+                result.setApellido(rs.getString("apellido"));
+                result.setEmail(rs.getString("email"));
+                result.setDepartamento(rs.getString("departamento"));
+                result.setLugar_formacion(rs.getString("lugar_formacion"));
+            }  else{
+                result = null;
             }
                     }catch (Exception ex){
                      ex.printStackTrace();

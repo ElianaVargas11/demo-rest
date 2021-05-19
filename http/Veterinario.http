@@ -2,7 +2,10 @@ GET http://localhost:8080/veterinario/10
 
 ########
 
-GET http://localhost:8080/establecimiento
+GET http://localhost:8080/veterinaria
+
+#####################################
+GET http://localhost:8080/veterinario/3
 
 ###############################
 
@@ -11,10 +14,10 @@ Content-Type:  application/json
 Accept: application/json
 
 {
-  "nombre": "cat Happy",
+  "nombre": "AngelesVet",
   "ciudad":"La Paz",
-  "direccion":"Villa San Antonio",
-  "telefono":"4526782",
-  "email": "cat@gmail.com",
+  "direccion":"Miraflores Av Bush",
+  "telefono":"2216543",
+  "email": "angelesvet@gmail.com",
   "horaAtencion":"Lunes a Viernes 9:00 - 20:00"
 }

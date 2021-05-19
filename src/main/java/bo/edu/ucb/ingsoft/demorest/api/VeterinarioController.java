@@ -2,6 +2,7 @@ package bo.edu.ucb.ingsoft.demorest.api;
 
 import bo.edu.ucb.ingsoft.demorest.bl.GestionVeterinaria;
 import bo.edu.ucb.ingsoft.demorest.bl.GestionVeterinario;
+import bo.edu.ucb.ingsoft.demorest.dto.ResponseDto;
 import bo.edu.ucb.ingsoft.demorest.dto.Veterinaria;
 import bo.edu.ucb.ingsoft.demorest.dto.Veterinario;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,13 @@ public class VeterinarioController {
     private GestionVeterinario gestionVeterinario;
     private Object Integer;
     @GetMapping(path = "/veterinario/{idVeterinario}")
-    public Veterinario findVeterinarioById(@PathVariable Integer idVeterinario){
-        return gestionVeterinario.findVeterinarioById(idVeterinario);
+    public ResponseDto findVeterinarioById(@PathVariable Integer idVeterinario){
+        Veterinario veterinario = gestionVeterinario.findVeterinarioById(idVeterinario);
+        if(veterinario !=null){
+            return new ResponseDto(true,veterinario,null);
+        }else {
+            return new ResponseDto(false,null,"No existe veterinario con el codigo");
+
+        }
     }
 }
