@@ -22,18 +22,18 @@ public class VeterinarioDao {
         try{
             Connection conn = dataSource.getConnection();
             Statement stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery("SELECT id_veterinario,id_usuario,id_veterinaria,id_imagen,nombre,apellido,email,departamento,lugar_formacion from veterinario"+"WHERE id_veterinario ="+idVeterinario);
+            ResultSet rs = stat.executeQuery("SELECT id_veterinario,id_usuario,id_veterinaria,id_imagen,nombre,apellido,email,departamento,lugar_formacion from veterinario WHERE id_veterinario ="+idVeterinario);
             if(rs.next())
             {
                 result.idVeterinario = rs.getInt("id_veterinario");
-                result.nombre = rs.getString("id_usuario");
-                result.apellido = rs.getString("id_veterinaria");
-                result.apellido = rs.getString("id_imagen");
-                result.apellido = rs.getString("nombre");
+                result.idUsuario = rs.getInt("id_usuario");
+                result.idVeterinaria = rs.getInt("id_veterinaria");
+                result.idImagen = rs.getInt("id_imagen");
+                result.nombre = rs.getString("nombre");
                 result.apellido = rs.getString("apellido");
-                result.apellido = rs.getString("email");
-                result.apellido = rs.getString("departamento");
-                result.apellido = rs.getString("lugar_formacion");
+                result.email = rs.getString("email");
+                result.departamento = rs.getString("departamento");
+                result.lugar_formacion = rs.getString("lugar_formacion");
             }
                     }catch (Exception ex){
                      ex.printStackTrace();
