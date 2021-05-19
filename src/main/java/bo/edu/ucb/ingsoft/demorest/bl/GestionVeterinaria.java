@@ -5,6 +5,8 @@ import bo.edu.ucb.ingsoft.demorest.dto.Veterinaria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GestionVeterinaria {
 
@@ -15,5 +17,7 @@ public class GestionVeterinaria {
         return veterinariaDao.crearVeterinaria(veterinaria);
     }
 
-
+    public List<Veterinaria> findAllVeterinaria(){
+        return veterinariaDao.findAllVeterinaria();
+    }
 }

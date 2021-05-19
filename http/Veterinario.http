@@ -2,12 +2,15 @@ GET http://localhost:8080/veterinario/1
 
 ########
 
-POST http://localhost:8080/veterinaria
+GET http://localhost:8080/establecimiento
+
+###############################
+
+POST http://localhost:8080/establecimiento
 Content-Type:  application/json
 Accept: application/json
 
 {
-  "idTipo": 2,
   "nombre": "cat Happy",
   "ciudad":"La Paz",
   "direccion":"Villa San Antonio",
