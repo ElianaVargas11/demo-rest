@@ -1,8 +1,7 @@
 package bo.edu.ucb.ingsoft.demorest.dto;
 
 public class Veterinaria {
-    public Integer idVeterinaria;
-    public Integer idTipo;
+    public Integer idEstablecimiento;
     public String nombre;
     public String ciudad;
     public String direccion;

@@ -7,7 +7,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Locale;
+
 
 @Service
 public class SecuenciaDao {
@@ -15,17 +15,20 @@ public class SecuenciaDao {
     private DataSource dataSource;
 
     public int getPrimaryKeyForTable (String nombreTabla){
-        String nombreSecuencia = nombreTabla.toLowerCase()+ "_"+"id"+"_"+nombreTabla.toLowerCase()+"_"+"seq";
-
+        String nombreSecuencia = nombreTabla.toLowerCase()+"_"+nombreTabla.toLowerCase()+"_"+"id_seq";
+        int resultado = 0;
         try{
             Connection conn =dataSource.getConnection();
             Statement stat = conn.createStatement();
-            ResultSet rs = stat.executeQuery("SELECT nextval('"+nombreSecuencia+"')");
+            ResultSet rs = stat.executeQuery("SELECT nextval('"+nombreSecuencia +"')");
+            if(rs.next()){
+               resultado = rs.getInt(1);
+            }
         }catch (Exception ex)
         {
             ex.printStackTrace();
         }
 
-        return 0;
+        return resultado;
     }
 }

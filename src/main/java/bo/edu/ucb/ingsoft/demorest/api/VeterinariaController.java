@@ -22,11 +22,8 @@ public class VeterinariaController {
     private Object Integer;
 
 
-    @PostMapping(path = "/veterinaria")
+    @PostMapping(path = "/establecimiento")
     public Veterinaria crearVeterinaria(@RequestBody Veterinaria veterinaria) {
-        if (veterinaria.idTipo == null || veterinaria.idTipo.equals(Integer)) {
-
-        }
 
         if (veterinaria.nombre == null || veterinaria.nombre.equals("")) {
 

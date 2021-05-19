@@ -19,11 +19,11 @@ public class VeterinariaDao {
         @Autowired
         private SecuenciaDao secuenciaDao;
      public Veterinaria crearVeterinaria (Veterinaria veterinaria){
-          veterinaria.idVeterinaria =secuenciaDao.getPrimaryKeyForTable("veterinaria");
+          veterinaria.idEstablecimiento =secuenciaDao.getPrimaryKeyForTable("establecimiento");
          try{
              Connection conn =dataSource.getConnection();
              Statement stat = conn.createStatement();
-             stat.execute("INSERT INTO veterinaria VALUES ("+veterinaria.idVeterinaria+",'"+veterinaria.idTipo+"','"+veterinaria.nombre+"','"+veterinaria.ciudad+"','"+veterinaria.direccion+"','"+veterinaria.telefono+"','"+veterinaria.email+"','"+veterinaria.horaAtencion+"')");
+             stat.execute("INSERT INTO establecimiento VALUES ("+veterinaria.idEstablecimiento+",'"+veterinaria.nombre+"','"+veterinaria.ciudad+"','"+veterinaria.direccion+"','"+veterinaria.telefono+"','"+veterinaria.email+"','"+veterinaria.horaAtencion+"')");
          }catch (Exception ex)
          {
              ex.printStackTrace();
