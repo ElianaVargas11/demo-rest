@@ -2,14 +2,19 @@ package bo.edu.ucb.ingsoft.demorest.dto;
 
 public class Veterinario {
     private Integer idVeterinario;
-    private Integer idUsuario;
+    //private Integer idUsuario;
     private Integer idVeterinaria;
-    private Integer idImagen;
+    //private Integer idImagen;
     private String nombre;
     private String apellido;
     private String email;
     private String departamento;
-    private String lugar_formacion;
+    //private String lugar_formacion;
+private String estrellas;
+private String especialidad;
+private String trabajacon;
+private String direccion;
+
     public Veterinario(){
 
     }
@@ -22,28 +27,12 @@ public class Veterinario {
         this.idVeterinario = idVeterinario;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public Integer getIdVeterinaria() {
         return idVeterinaria;
     }
 
     public void setIdVeterinaria(Integer idVeterinaria) {
         this.idVeterinaria = idVeterinaria;
-    }
-
-    public Integer getIdImagen() {
-        return idImagen;
-    }
-
-    public void setIdImagen(Integer idImagen) {
-        this.idImagen = idImagen;
     }
 
     public String getNombre() {
@@ -78,11 +67,35 @@ public class Veterinario {
         this.departamento = departamento;
     }
 
-    public String getLugar_formacion() {
-        return lugar_formacion;
+    public String getEstrellas() {
+        return estrellas;
     }
 
-    public void setLugar_formacion(String lugar_formacion) {
-        this.lugar_formacion = lugar_formacion;
+    public void setEstrellas(String estrellas) {
+        this.estrellas = estrellas;
+    }
+
+    public String getEspecialidad() {
+        return especialidad;
+    }
+
+    public void setEspecialidad(String especialidad) {
+        this.especialidad = especialidad;
+    }
+
+    public String getTrabajacon() {
+        return trabajacon;
+    }
+
+    public void setTrabajacon(String trabajacon) {
+        this.trabajacon = trabajacon;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 }

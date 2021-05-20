@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -24,10 +25,17 @@ public class VeterinariaDao {
         private SecuenciaDao secuenciaDao;
      public Veterinaria crearVeterinaria (Veterinaria veterinaria){
           veterinaria.setIdEstablecimiento(secuenciaDao.getPrimaryKeyForTable("establecimiento"));
-         try{
-             Connection conn =dataSource.getConnection();
-             Statement stat = conn.createStatement();
-             stat.execute("INSERT INTO establecimiento VALUES ("+veterinaria.getIdEstablecimiento()+",'"+veterinaria.getNombre()+"','"+veterinaria.getCiudad()+"','"+veterinaria.getDireccion()+"','"+veterinaria.getTelefono()+"','"+veterinaria.getEmail()+"','"+veterinaria.getHoraAtencion()+"')");
+          Connection conn = null;
+          try{
+             PreparedStatement stat = conn.prepareStatement("INSERT INTO establecimiento VALUES (?,?,?,?,?,?,?)");
+             stat.setInt(1,veterinaria.getIdEstablecimiento());
+             stat.setString(2,veterinaria.getNombre());
+             stat.setString(3,veterinaria.getCiudad());
+             stat.setString(4,veterinaria.getDireccion());
+             stat.setString(5,veterinaria.getTelefono());
+             stat.setString(6, veterinaria.getEmail());
+             stat.setString(7,veterinaria.getHoraAtencion());
+
          }catch (Exception ex)
          {
              ex.printStackTrace();
@@ -40,9 +48,10 @@ public class VeterinariaDao {
      public List<Veterinaria> findAllVeterinaria(){
          List<Veterinaria> result = new ArrayList<>();
 
-         try{
-             Connection conn = dataSource.getConnection();
-             Statement stat = conn.createStatement();
+         try(Connection conn = dataSource.getConnection();
+             Statement stat = conn.createStatement();)
+         {
+
              ResultSet rs = stat.executeQuery("SELECT establecimiento_id,nombre,ciudad,direccion,telefono,email,horario_atencion FROM establecimiento");
              while(rs.next()){
                  Veterinaria veterinaria = new Veterinaria();

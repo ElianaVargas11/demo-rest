@@ -1,23 +1,23 @@
-GET http://localhost:8080/veterinario/10
-
-########
-
-GET http://localhost:8080/veterinaria
-
-#####################################
-GET http://localhost:8080/veterinario/3
-
-###############################
 
 POST http://localhost:8080/establecimiento
 Content-Type:  application/json
 Accept: application/json
 
 {
-  "nombre": "AngelesVet",
+  "nombre": "Mi buen Osito",
   "ciudad":"La Paz",
-  "direccion":"Miraflores Av Bush",
-  "telefono":"2216543",
-  "email": "angelesvet@gmail.com",
+  "direccion":"Av. Hernando Siles",
+  "telefono":"72020565",
+  "email": "miBuenOsito@gmail.com",
   "horaAtencion":"Lunes a Viernes 9:00 - 20:00"
 }
+####################################
+GET http://localhost:8080/veterinario/1
+###################################3
+GET http://localhost:8080/horario/1
+################################
+GET http://localhost:8080/establecimiento
+
+#####################################
+GET http://localhost:8080/tips
+

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -18,10 +19,10 @@ public class SecuenciaDao {
         String nombreSecuencia = nombreTabla.toLowerCase()+"_"+nombreTabla.toLowerCase()+"_"+"id_seq";
         int resultado = 0;
         try(Connection conn =dataSource.getConnection();
-            Statement stat = conn.createStatement();)
+            PreparedStatement pstmt = conn.prepareStatement("SELECT nextval(?)"))
         {
-
-            ResultSet rs = stat.executeQuery("SELECT nextval('"+nombreSecuencia +"')");
+            pstmt.setString(1,nombreSecuencia);
+            ResultSet rs = pstmt.executeQuery();
             if(rs.next()){
                resultado = rs.getInt(1);
             }

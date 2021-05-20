@@ -27,23 +27,23 @@ public class VeterinariaController {
     @PostMapping(path = "/establecimiento")
     public ResponseDto crearVeterinaria(@RequestBody Veterinaria veterinaria) {
 
-        if (veterinaria.getNombre() == null || veterinaria.getNombre().equals("")) {
+        if (veterinaria.getNombre() == null || veterinaria.getNombre().trim().equals("")) {
             return new ResponseDto(false,null,"El nombre debe ser obligatorio");
 
         }
-        if (veterinaria.getCiudad() == null || veterinaria.getCiudad().equals("")) {
+        if (veterinaria.getCiudad() == null || veterinaria.getCiudad().trim().equals("")) {
             return new ResponseDto(false,null,"El apellido debe ser obligatorio");
         }
-        if (veterinaria.getDireccion() == null || veterinaria.getDireccion().equals("")) {
+        if (veterinaria.getDireccion() == null || veterinaria.getDireccion().trim().equals("")) {
             return new ResponseDto(false,null,"La direccion debe ser obligatorio");
         }
-        if (veterinaria.getTelefono()== null || veterinaria.getTelefono().equals("")) {
+        if (veterinaria.getTelefono()== null || veterinaria.getTelefono().trim().equals("")) {
             return new ResponseDto(false,null,"El telefono debe ser obligatorio");
         }
-        if (veterinaria.getEmail()== null || veterinaria.getEmail().equals("")) {
+        if (veterinaria.getEmail()== null || veterinaria.getEmail().trim().equals("")) {
             return new ResponseDto(false,null,"Email debe ser obligatorio");
         }
-        if (veterinaria.getHoraAtencion() == null || veterinaria.getHoraAtencion().equals("")) {
+        if (veterinaria.getHoraAtencion() == null || veterinaria.getHoraAtencion().trim().equals("")) {
             return new ResponseDto(false,null,"El horario de atencion debe ser obligatorio");
         }
 
