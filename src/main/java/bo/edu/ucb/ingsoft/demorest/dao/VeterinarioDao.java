@@ -23,7 +23,7 @@ public class VeterinarioDao {
     public Veterinario findVeterinarioById(Integer idVeterinario){
         Veterinario result = new Veterinario();
         try(Connection conn = dataSource.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement("select v.id_veterinario,v.id_veterinario,v.nombre,v.apellido,(select avg(ca.calificacion) from CONSULTA co, CALIFICACION ca  WHERE co.id_veterinario = v.id_veterinario and co.id_consulta= ca.id_consulta ) estrellas, e.especialidad,v.departamento,v.email,vet.nombre Trabaja_con,vet.direccion from veterinario v left join veterinario_especialidad ve on v.id_veterinario = ve.id_veterinario left join especialidad e on ve.id_especialidad = e.id_especialidad  left join veterinaria vet on v.id_veterinaria = vet.id_veterinaria where v.id_usuario = ?"))
+            PreparedStatement pstmt = conn.prepareStatement("select v.id_veterinario,v.nombre,v.apellido,(select avg(ca.calificacion) from CONSULTA co, CALIFICACION ca  WHERE co.id_veterinario = v.id_veterinario and co.id_consulta= ca.id_consulta ) estrellas, e.especialidad,v.departamento,v.email,vet.nombre Trabaja_con,vet.direccion from veterinario v left join veterinario_especialidad ve on v.id_veterinario = ve.id_veterinario left join especialidad e on ve.id_especialidad = e.id_especialidad  left join veterinaria vet on v.id_veterinaria = vet.id_veterinaria where v.id_usuario = ?"))
         {
             pstmt.setInt(1,idVeterinario);
             ResultSet rs = pstmt.executeQuery();
