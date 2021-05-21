@@ -2,17 +2,13 @@ package bo.edu.ucb.ingsoft.demorest.dao;
 
 
 import bo.edu.ucb.ingsoft.demorest.dto.Veterinaria;
-import bo.edu.ucb.ingsoft.demorest.dto.Veterinario;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,37 +19,48 @@ public class VeterinariaDao {
 
         @Autowired
         private SecuenciaDao secuenciaDao;
+
      public Veterinaria crearVeterinaria (Veterinaria veterinaria){
-          veterinaria.setIdEstablecimiento(secuenciaDao.getPrimaryKeyForTable("establecimiento"));
-          Connection conn = null;
-          try{
-             PreparedStatement stat = conn.prepareStatement("INSERT INTO establecimiento VALUES (?,?,?,?,?,?,?)");
-             stat.setInt(1,veterinaria.getIdEstablecimiento());
-             stat.setString(2,veterinaria.getNombre());
-             stat.setString(3,veterinaria.getCiudad());
-             stat.setString(4,veterinaria.getDireccion());
-             stat.setString(5,veterinaria.getTelefono());
-             stat.setString(6, veterinaria.getEmail());
-             stat.setString(7,veterinaria.getHoraAtencion());
-
-         }catch (Exception ex)
-         {
-             ex.printStackTrace();
+         veterinaria.setIdEstablecimiento(secuenciaDao.getPrimaryKeyForTable("establecimiento"));
+         Connection conn = null;
+         try{
+              conn = dataSource.getConnection();
+              PreparedStatement pstmt = conn.prepareStatement("INSERT INTO establecimiento VALUES (?,?,?,?,?,?,?)");
+              pstmt.setInt(1,veterinaria.getIdEstablecimiento());
+              pstmt.setString(2, veterinaria.getNombre());
+              pstmt.setString(3, veterinaria.getCiudad());
+              pstmt.setString(4, veterinaria.getDireccion());
+              pstmt.setString(5, veterinaria.getTelefono());
+              pstmt.setString(6, veterinaria.getEmail());
+              pstmt.setString(7, veterinaria.getHoraAtencion());
+              pstmt.executeUpdate();
          }
+         catch (Exception ex){
+             ex.printStackTrace();
+         }finally {
+             if (conn != null){
+                 try{
+                     conn.close();
+                 }catch (SQLException sqex){
 
+                 }
+             }
+         }
          return veterinaria;
-
      }
+
+
 
      public List<Veterinaria> findAllVeterinaria(){
          List<Veterinaria> result = new ArrayList<>();
 
          try(Connection conn = dataSource.getConnection();
-             Statement stat = conn.createStatement();)
+             Statement pstmt = conn.createStatement())
          {
 
-             ResultSet rs = stat.executeQuery("SELECT establecimiento_id,nombre,ciudad,direccion,telefono,email,horario_atencion FROM establecimiento");
-             while(rs.next()){
+             ResultSet rs = pstmt.executeQuery("SELECT establecimiento_id,nombre,ciudad,direccion,telefono,email,horario_atencion FROM establecimiento");
+             while(rs.next())
+             {
                  Veterinaria veterinaria = new Veterinaria();
                  veterinaria.setIdEstablecimiento(rs.getInt("establecimiento_id"));
                  veterinaria.setNombre(rs.getString("nombre"));
@@ -65,7 +72,8 @@ public class VeterinariaDao {
                  result.add(veterinaria);
 
              }
-         }catch (Exception ex){
+         }catch (Exception ex)
+         {
              ex.printStackTrace();
          }
          return result;

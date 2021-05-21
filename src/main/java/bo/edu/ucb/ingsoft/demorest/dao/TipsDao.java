@@ -1,21 +1,20 @@
 package bo.edu.ucb.ingsoft.demorest.dao;
 
 import bo.edu.ucb.ingsoft.demorest.dto.Tips;
+
 import bo.edu.ucb.ingsoft.demorest.dto.Veterinaria;
-import bo.edu.ucb.ingsoft.demorest.dto.Veterinario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TipsDao {
+
     @Autowired
     private DataSource dataSource;
 
@@ -23,7 +22,7 @@ public class TipsDao {
         List<Tips> result = new ArrayList<>();
 
         try(Connection conn = dataSource.getConnection();
-            Statement stat = conn.createStatement();)
+            Statement stat = conn.createStatement())
         {
 
             ResultSet rs = stat.executeQuery("select t.titulo, t.descripcion, i.nombre_imagen from tips t join imagen i on t.id_imagen = i.id_imagen");
@@ -41,4 +40,6 @@ public class TipsDao {
         }
         return result;
     }
+
+
 }

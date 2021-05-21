@@ -1,7 +1,7 @@
 package bo.edu.ucb.ingsoft.demorest.api;
 
 import bo.edu.ucb.ingsoft.demorest.bl.GestionVeterinaria;
-import bo.edu.ucb.ingsoft.demorest.dao.VeterinariaDao;
+
 import bo.edu.ucb.ingsoft.demorest.dto.ResponseDto;
 import bo.edu.ucb.ingsoft.demorest.dto.Veterinaria;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.sql.DataSource;
-import java.util.List;
+
 
 
 @RestController
@@ -19,9 +19,10 @@ public class VeterinariaController {
 
     @Autowired
     public DataSource dataSource;
+
     @Autowired
     private GestionVeterinaria gestionVeterinaria;
-    private Object Integer;
+
 
 
     @PostMapping(path = "/establecimiento")

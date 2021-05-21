@@ -1,6 +1,7 @@
 package bo.edu.ucb.ingsoft.demorest.dto;
 
 public class Tips {
+
     private String titulo;
     private String descripcion;
     private String nombreImagen;

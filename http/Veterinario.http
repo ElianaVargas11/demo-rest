@@ -1,23 +1,30 @@
+###############################
 
 POST http://localhost:8080/establecimiento
 Content-Type:  application/json
 Accept: application/json
 
 {
-  "nombre": "Mi buen Osito",
+  "nombre": "Mi buen Osito 7",
   "ciudad":"La Paz",
   "direccion":"Av. Hernando Siles",
   "telefono":"72020565",
   "email": "miBuenOsito@gmail.com",
   "horaAtencion":"Lunes a Viernes 9:00 - 20:00"
 }
-####################################
-GET http://localhost:8080/veterinario/1
-###################################3
-GET http://localhost:8080/horario/1
+
 ################################
 GET http://localhost:8080/establecimiento
 
+
+####################################
+GET http://localhost:8080/veterinario/1
+
+###################################3
+GET http://localhost:8080/horario/1
+
+
 #####################################
 GET http://localhost:8080/tips
+
 

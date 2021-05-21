@@ -3,7 +3,7 @@ package bo.edu.ucb.ingsoft.demorest.dto;
 public class Veterinario {
     private Integer idVeterinario;
     //private Integer idUsuario;
-    private Integer idVeterinaria;
+    //private Integer idVeterinaria;
     //private Integer idImagen;
     private String nombre;
     private String apellido;
@@ -27,13 +27,7 @@ private String direccion;
         this.idVeterinario = idVeterinario;
     }
 
-    public Integer getIdVeterinaria() {
-        return idVeterinaria;
-    }
 
-    public void setIdVeterinaria(Integer idVeterinaria) {
-        this.idVeterinaria = idVeterinaria;
-    }
 
     public String getNombre() {
         return nombre;

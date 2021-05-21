@@ -12,6 +12,7 @@ import java.sql.Statement;
 
 @Service
 public class SecuenciaDao {
+
     @Autowired
     private DataSource dataSource;
 
