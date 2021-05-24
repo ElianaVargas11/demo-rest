@@ -5,9 +5,15 @@ public class Tips {
     private String titulo;
     private String descripcion;
     private String nombreImagen;
+    private String tipVeterinario;
 
+    public String getTipVeterinario() {
+        return tipVeterinario;
+    }
 
-
+    public void setTipVeterinario(String tipVeterinario) {
+        this.tipVeterinario = tipVeterinario;
+    }
 
     public Tips(){
 
